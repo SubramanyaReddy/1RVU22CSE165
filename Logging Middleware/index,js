@@ -1,24 +1,8 @@
-// index.js
-
-const express = require("express")
-const { v4: uuidv4 } = require("uuid")
-
-const app = express()
-app.use(express.json())
-
-app.post("/log", (req, res) => {
-    const body = req.body
-    if(!body.stack || !body.level || !body.package || !body.message){
-        return res.status(400).send({error: "something missing"})
-    }
-
-    const log = {
-        logID: uuidv4(),
-        stack: body.stack,
-        level: body.level,
-        package: body.package,
-        message: body.message
-    }
+{
+    "token_type": "Bearer",
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiYXVkIjoiaHR0cDovLzIwLjI0NC41Ni4xNDQvZXZhbHVhdGlvbi1zZXJ2aWNlIiwiZW1haWwiOiJzdWJyYW1hbnlhcC5idGVjaDIyQHJ2dS5lZHUuaW4iLCJleHAiOjE3NTczMTAzNjMsImlhdCI6MTc1NzMwOTQ2MywiaXNzIjoiQWZmb3JkIE1lZGljYWwgVGVjaG5vbG9naWVzIFByaXZhdGUgTGltaXRlZCIsImp0aSI6Ijg1ZTZjY2ExLThlY2EtNGE5Yi04ZDMxLWFhM2NlYmI4ODBkOCIsImxvY2FsZSI6ImVuLUlOIiwibmFtZSI6InN1YnJhbWFueWEgcHJhc2FuIiwic3ViIjoiZDEzNjI1ZWQtYjY1Zi00ODM4LTg0YTktNWQ4ZTQxNGFmODVhIn0sImVtYWlsIjoic3VicmFtYW55YXAuYnRlY2gyMkBydnUuZWR1LmluIiwibmFtZSI6InN1YnJhbWFueWEgcHJhc2FuIiwicm9sbE5vIjoiMXJ2dTIyY3NlMTY1IiwiYWNjZXNzQ29kZSI6IldQVnFrdyIsImNsaWVudElEIjoiZDEzNjI1ZWQtYjY1Zi00ODM4LTg0YTktNWQ4ZTQxNGFmODVhIiwiY2xpZW50U2VjcmV0IjoiYmJNdUZ3VmFaYlBjaEprbiJ9.u7aynIaloYKJpSUK5x9ll2JXha1BvvYQKBTLncfKyNs",
+    "expires_in": 1757310363
+}
 
     res.send({logID: log.logID, message: "log created successfully"})
 })
