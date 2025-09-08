@@ -1,0 +1,28 @@
+// index.js
+
+const express = require("express")
+const { v4: uuidv4 } = require("uuid")
+
+const app = express()
+app.use(express.json())
+
+app.post("/log", (req, res) => {
+    const body = req.body
+    if(!body.stack || !body.level || !body.package || !body.message){
+        return res.status(400).send({error: "something missing"})
+    }
+
+    const log = {
+        logID: uuidv4(),
+        stack: body.stack,
+        level: body.level,
+        package: body.package,
+        message: body.message
+    }
+
+    res.send({logID: log.logID, message: "log created successfully"})
+})
+
+app.listen(5001, () => {
+    console.log("server running")
+})
